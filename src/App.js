@@ -4,7 +4,7 @@ import About from './Pages/About/About';
 import Blogs from './Pages/Blogs/Blogs';
 import Checkout from './Pages/Checkout/Checkout';
 import Home from './Pages/Home/Home/Home';
-import Services from './Pages/Home/Services/Services';
+import Services from './Pages/Home/Courses/Services';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import RequireAuth from './Pages/Login/RequireAuth/RequireAuth';

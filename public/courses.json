@@ -1,0 +1,17 @@
+[
+    {
+        "id": "1",
+        "name": "Physics",
+        "fee": "1500"
+    },
+    {
+        "id": "2",
+        "name": "Chemistry",
+        "fee": "1500"
+    },
+    {
+        "id": "3",
+        "name": "Higher Mathematics",
+        "fee": "2000"
+    }
+]

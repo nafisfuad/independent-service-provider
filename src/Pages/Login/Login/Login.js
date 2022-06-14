@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import React, { useRef } from 'react';
 import { Button, Col, Container, Form, Row, Toast } from 'react-bootstrap';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -9,10 +9,12 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
+    let errorElement;
 
     const [
         signInWithEmailAndPassword,
@@ -21,7 +23,7 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -34,6 +36,7 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password);
+        navigate('/');
     }
 
     const resetPassword = async () => {
@@ -41,11 +44,21 @@ const Login = () => {
         if (email) {
             await sendPasswordResetEmail(email);
             toast('Email sent.');
+        } else {
+            toast('Please enter your email address.');
         }
+    }
+
+    if (loading || sending) {
+        return <Loading></Loading>;
     }
 
     if (user) {
         navigate(from, { replace: true });
+    }
+
+    if (error) {
+        errorElement = <p className='text-danger'>{error?.message}</p>;
     }
 
     return (
@@ -67,6 +80,7 @@ const Login = () => {
                             Login
                         </Button>
                     </Form>
+                    {errorElement}
                     <p>New to Mentorship? <Link className='text-decoration-none' to='/register'>Register here</Link></p>
                     <p>Forgot password? <Button onClick={resetPassword} className='py-1' variant='primary'>Reset</Button></p>
                     <ToastContainer />

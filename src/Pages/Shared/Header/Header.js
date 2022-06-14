@@ -9,6 +9,12 @@ const Header = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
 
+    const handleRegister = () => {
+        if (!user) {
+            navigate('/register');
+        }
+    }
+
     const handleLog = () => {
         if (user) {
             signOut(auth);
@@ -30,7 +36,7 @@ const Header = () => {
                             <Nav.Link as={Link} to="/about">About</Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                            <Nav.Link onClick={handleRegister}>{user ? user.displayName : 'Register'}</Nav.Link>
                             <Nav.Link onClick={handleLog}>{user ? 'Logout' : 'Login'}</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

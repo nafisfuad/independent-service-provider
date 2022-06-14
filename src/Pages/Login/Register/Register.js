@@ -12,16 +12,13 @@ const Register = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
 
-    let errorMessage;
-
     const [
         createUserWithEmailAndPassword,
         user,
-        loading,
-        error,
+        loading
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
 
     if (loading || updating) {
         return <Loading></Loading>;
@@ -38,10 +35,6 @@ const Register = () => {
         const password = passwordRef.current.value;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName });
-    }
-
-    if (error) {
-        errorMessage = `<p>${error?.message}</p>`;
     }
 
     return (
@@ -68,7 +61,6 @@ const Register = () => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                         </Form.Group>
-                        {errorMessage}
                         <Button variant="primary" type="submit">
                             Register
                         </Button>

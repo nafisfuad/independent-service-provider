@@ -2,16 +2,22 @@
     {
         "id": "1",
         "name": "Physics",
-        "fee": "1500"
+        "fee": "1500",
+        "description": "Quick revision and Model Tests",
+        "img": "http://2.bp.blogspot.com/-4RfdwA5QQh4/Tyvl51PpPrI/AAAAAAAAB6E/1fhRFXLLM_0/s1600/Nerdy%2BPhysics%2BFormula%2BFB%2BCover-767256.jpg"
     },
     {
         "id": "2",
         "name": "Chemistry",
-        "fee": "1500"
+        "fee": "1500",
+        "description": "Quick revision and Model Tests",
+        "img": "http://www.f-covers.com/cover/chemistry-facebook-cover-timeline-banner-for-fb.jpg"
     },
     {
         "id": "3",
         "name": "Higher Mathematics",
-        "fee": "2000"
+        "fee": "2000",
+        "description": "Quick revision and Model Tests",
+        "img": "https://i.pinimg.com/736x/dc/2c/48/dc2c482294100808cced408abb9cdf7d.jpg"
     }
 ]
